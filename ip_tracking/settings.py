@@ -30,6 +30,22 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-key-for-dev')
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
+# add this block temporarily for Render debugging
+if DEBUG:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'root': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    }
+    
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 # ALLOWED_HOSTS = ['ip-tracking-w1wa.onrender.com', 'localhost', '127.0.0.1']
 
