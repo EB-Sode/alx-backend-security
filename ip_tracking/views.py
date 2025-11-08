@@ -2,8 +2,6 @@ from django.http import JsonResponse
 from ratelimit.decorators import ratelimit
 from django.contrib.auth import authenticate, login
 
-from django.http import HttpResponse
-
 # Optional: custom handler
 def rate_limit_exceeded_view(request, exception=None):
     return JsonResponse({"error": "Rate limit exceeded. Please try again later."}, status=429)
