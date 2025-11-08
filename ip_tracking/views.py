@@ -1,6 +1,8 @@
 from django.http import JsonResponse
-from ratelimit.decorators import ratelimit # type: ignore
+from ratelimit.decorators import ratelimit
 from django.contrib.auth import authenticate, login
+
+from django.http import HttpResponse
 
 # Optional: custom handler
 def rate_limit_exceeded_view(request, exception=None):
@@ -37,3 +39,4 @@ def _anonymous_login_view(request):
         login(request, user)
         return JsonResponse({"message": "Login successful"})
     return JsonResponse({"error": "Invalid credentials"}, status=400)
+
